@@ -2,7 +2,6 @@ const childProcess = require("child_process");
 const fs = require("fs");
 
 const platform = process.platform;
-let logTime = Date.now();
 
 const updateLog = (data) => {
   const timestamp = Math.floor(Date.now() / 1000);
@@ -29,12 +28,8 @@ setInterval(() => {
     const data = stdout;
     process.stdout.write("\r" + stdout);
 
-    const date = new Date().getTime();
+    setTimeout(updateLog, 60000, data)
 
-    if (date % logTime >= 60000) {
-      updateLog(data);
-      logTime = date;
-    }
   });
 
 }, 100);
