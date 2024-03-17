@@ -15,8 +15,13 @@ readableStream
   .pipe(csv())
   .on("data", (data) => {
     const jsonData = data.toString("utf8");
-    console.log("json Data", jsonData);
-    writableStream.write(JSON.stringify(jsonData) + "\n", (err) => {
+    const bookData = JSON.parse(jsonData);
+    const outputData = {
+      book: bookData.Book,
+      author: bookData.Author,
+      price: bookData.Price
+    };
+    writableStream.write(JSON.stringify(outputData) + "\n", (err) => {
       if (err) {
         console.error("Error writing to file:", err);
       }
@@ -29,3 +34,5 @@ readableStream
 writableStream.on("finish", () => {
   console.log("Data written to file successfully.");
 });
+
+//book: author: price:
