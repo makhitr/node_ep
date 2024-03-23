@@ -38,13 +38,13 @@ describe("test validate input", () => {
     const country = SUPPORTED_COUNTRIES[0];
     const year = 2024;
     test("should pass validation when country is valid", () => {
-      expect(validateInput({ country })).toBeTruthy();
+      expect(validateInput({ country })).toBe(true);
     });
     test("should pass validation when year is valid", () => {
-      expect(validateInput({ year })).toBeTruthy();
+      expect(validateInput({ year })).toBe(true);
     });
     test("should pass validation when country and year is valid", () => {
-      expect(validateInput({ country, year })).toBeTruthy();
+      expect(validateInput({ country, year })).toBe(true);
     });
   });
 });
